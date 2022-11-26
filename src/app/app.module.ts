@@ -16,13 +16,14 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { GridComponent } from './grid/grid/grid.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { ChartModule } from 'angular-highcharts';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    GridComponent
+    GridComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,8 @@ registerLocaleData(en);
     ReactiveFormsModule,
     NzMenuModule,
     NzIconModule,
-    NzGridModule
+    NzGridModule,
+    ChartModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
