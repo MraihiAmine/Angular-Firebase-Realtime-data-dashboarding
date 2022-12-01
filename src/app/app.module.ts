@@ -17,6 +17,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { GridComponent } from './grid/grid/grid.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ChartModule } from 'angular-highcharts';
+import { TempHumLineChartComponent } from './grid/temp-hum-line-chart/temp-hum-line-chart.component';
 
 registerLocaleData(en);
 
@@ -24,6 +25,7 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     GridComponent,
+    TempHumLineChartComponent,
   ],
   imports: [
     BrowserModule,
