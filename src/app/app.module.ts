@@ -18,6 +18,10 @@ import { GridComponent } from './grid/grid/grid.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { ChartModule } from 'angular-highcharts';
 import { TempHumLineChartComponent } from './grid/temp-hum-line-chart/temp-hum-line-chart.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
 
 registerLocaleData(en);
 
@@ -38,7 +42,10 @@ registerLocaleData(en);
     NzMenuModule,
     NzIconModule,
     NzGridModule,
-    ChartModule
+    ChartModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
