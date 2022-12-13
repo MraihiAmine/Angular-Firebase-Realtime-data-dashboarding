@@ -4,8 +4,68 @@
   </div>
 </div>
 <div nz-row>
-  <div nz-col nzSpan="6" style="text-align: center">temperature card 1</div>
-  <div nz-col nzSpan="6" style="text-align: center">temperature card 2</div>
-  <div nz-col nzSpan="6" style="text-align: center">temperature card 3</div>
-  <div nz-col nzSpan="6" style="text-align: center">temperature card 4</div>
+  <div nz-col nzSpan="6" style="text-align: center">
+    <nz-card style="width: 300px" [nzCover]="coverTemplate">
+      <nz-card-meta
+        nzTitle="Maximum temperature"
+        [nzAvatar]="avatarTemplate"
+      ></nz-card-meta>
+    </nz-card>
+    <ng-template #avatarTemplate>
+      <nz-avatar
+        nzSrc="https://thumbs.dreamstime.com/b/hot-weather-rgb-color-icon-summer-heat-seasonal-forecasting-meteorology-science-air-temperature-prediction-thermometer-sun-180835854.jpg"
+      ></nz-avatar>
+    </ng-template>
+    <ng-template #coverTemplate>
+      <h1>70°C</h1>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="6" style="text-align: center">
+    <nz-card style="width: 300px" [nzCover]="coverTemplate1">
+      <nz-card-meta
+        nzTitle="Minimum temperature"
+        [nzAvatar]="avatarTemplate"
+      ></nz-card-meta>
+    </nz-card>
+    <ng-template #avatarTemplate>
+      <nz-avatar
+        nzSrc="https://thumbs.dreamstime.com/b/hot-weather-rgb-color-icon-summer-heat-seasonal-forecasting-meteorology-science-air-temperature-prediction-thermometer-sun-180835854.jpg"
+      ></nz-avatar>
+    </ng-template>
+    <ng-template #coverTemplate1>
+      <h1>20°C</h1>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="6" style="text-align: center">
+    <nz-card style="width: 300px" [nzCover]="coverTemplate2">
+      <nz-card-meta
+        nzTitle="Average temperature"
+        [nzAvatar]="avatarTemplate"
+      ></nz-card-meta>
+    </nz-card>
+    <ng-template #avatarTemplate>
+      <nz-avatar
+        nzSrc="https://thumbs.dreamstime.com/b/hot-weather-rgb-color-icon-summer-heat-seasonal-forecasting-meteorology-science-air-temperature-prediction-thermometer-sun-180835854.jpg"
+      ></nz-avatar>
+    </ng-template>
+    <ng-template #coverTemplate2>
+      <h1>40°C</h1>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="6" style="text-align: center">
+    <nz-card style="width: 300px" [nzCover]="coverTemplate3">
+      <nz-card-meta
+        nzTitle="Median temperature"
+        [nzAvatar]="avatarTemplate"
+      ></nz-card-meta>
+    </nz-card>
+    <ng-template #avatarTemplate>
+      <nz-avatar
+        nzSrc="https://thumbs.dreamstime.com/b/hot-weather-rgb-color-icon-summer-heat-seasonal-forecasting-meteorology-science-air-temperature-prediction-thermometer-sun-180835854.jpg"
+      ></nz-avatar>
+    </ng-template>
+    <ng-template #coverTemplate3>
+      <h1>35°C</h1>
+    </ng-template>
+  </div>
 </div>
