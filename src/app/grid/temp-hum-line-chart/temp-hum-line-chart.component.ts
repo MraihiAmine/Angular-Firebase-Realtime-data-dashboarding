@@ -49,6 +49,12 @@ export class TempHumLineChartComponent implements OnInit {
         this.options.xAxis.categories = this.temperatureTimeStamp;
         this.options.series[0].data = this.temperatureValues;
 
+        //Getting statistic values from the temperature data
+        let max_temperature = Math.max(...this.temperatureValues);
+        let min_temperature = Math.min(...this.temperatureValues);
+
+        // let average_temperature = Math.
+
         //creation of the line chart
         Highcharts.chart('container_hum_temp_chart', this.options);
       }
