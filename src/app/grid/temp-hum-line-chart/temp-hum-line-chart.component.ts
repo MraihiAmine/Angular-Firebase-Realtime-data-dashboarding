@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { FirebaseTempHumService } from 'src/app/services/firebase_charts/firebase-temp-hum.service';
+// require('stats-array')
+import * as ss from 'simple-statistics';
+import { temperatureModel } from 'src/app/Models/Charts/temp_interface';
+// import stats-array from 'node_modules\stats-array\stats-array.js'
+declare var require: any;
 @Component({
   selector: 'app-temp-hum-line-chart',
   templateUrl: './temp-hum-line-chart.component.html',
@@ -8,17 +13,32 @@ import { FirebaseTempHumService } from 'src/app/services/firebase_charts/firebas
 })
 export class TempHumLineChartComponent implements OnInit {
   constructor(private firebaseTempHumService: FirebaseTempHumService) {}
+  private max_temperature!: string;
+  private min_temperature!: string;
+  private average_temperature!: string;
+  private mean_temperature!: string;
+
+  private temperature_stats = {
+    max_temperature: '',
+    min_temperature: '',
+    average_temperature: '',
+    mean_temperature: '',
+  };
 
   //temporary temperature array, used later for verification purposes
-  temperatureDataTmp: any[] = [];
+  temperatureDataTmp: temperatureModel[] = [];
 
   //holders of the temperature data
-  temperatureValues: any[] = [];
+  temperatureValues: number[] = [];
   temperatureTimeStamp: any[] = [];
+  @Output() temperatureStatsCreated = new EventEmitter<{
+    temperature_stats_param: object;
+  }>();
   ngOnInit() {
     this.firebaseTempHumService.temperatureObservable.subscribe(
       (temperatureData) => {
         console.log('temperatureData:', temperatureData);
+        var arr = [50, 40, 30, 20, 30, 40, 50];
 
         //holders of the temperature data
         this.temperatureDataTmp = [];
@@ -44,6 +64,37 @@ export class TempHumLineChartComponent implements OnInit {
 
         //temporary temperature array, used later for verification purposes
         this.temperatureDataTmp = temperatureData;
+        console.log(
+          `temperature average is equal to ${ss.average(
+            this.temperatureValues
+          )}`
+        );
+        //Statistic values
+        this.max_temperature =
+          ('' + ss.max(this.temperatureValues)).slice(0, 5) + ' °C';
+
+        this.min_temperature =
+          ('' + ss.min(this.temperatureValues)).slice(0, 5) + ' °C';
+
+        this.average_temperature =
+          ('' + ss.average(this.temperatureValues)).slice(0, 5) + ' °C';
+
+        this.mean_temperature =
+          ('' + ss.mean(this.temperatureValues)).slice(0, 5) + ' °C';
+
+        console.log(`max_temperature string: ${this.max_temperature}`);
+        console.log(`min_temperature string: ${this.min_temperature}`);
+        console.log(`average_temperature string: ${this.average_temperature}`);
+        console.log(`mean_temperature string: ${this.mean_temperature}`);
+
+        this.temperature_stats.max_temperature = this.max_temperature;
+        this.temperature_stats.min_temperature = this.min_temperature;
+        this.temperature_stats.average_temperature = this.average_temperature;
+        this.temperature_stats.mean_temperature = this.mean_temperature;
+
+        this.temperatureStatsCreated.emit({
+          temperature_stats_param: this.temperature_stats,
+        });
 
         //defining the content of categories from the firebase
         this.options.xAxis.categories = this.temperatureTimeStamp;
@@ -52,8 +103,6 @@ export class TempHumLineChartComponent implements OnInit {
         //Getting statistic values from the temperature data
         let max_temperature = Math.max(...this.temperatureValues);
         let min_temperature = Math.min(...this.temperatureValues);
-
-        // let average_temperature = Math.
 
         //creation of the line chart
         Highcharts.chart('container_hum_temp_chart', this.options);

@@ -1,6 +1,6 @@
 <div nz-row>
   <div nz-col nzSpan="24" style="text-align: center">
-    <app-temp-hum-line-chart></app-temp-hum-line-chart>
+    <app-temp-hum-line-chart (temperatureStatsCreated)=add_cards_stats($event)></app-temp-hum-line-chart>
   </div>
 </div>
 <div nz-row>
@@ -17,7 +17,7 @@
       ></nz-avatar>
     </ng-template>
     <ng-template #coverTemplate>
-      <h1>70°C</h1>
+      <h1>{{temperature_stats.max_temperature}}</h1>
     </ng-template>
   </div>
   <div nz-col nzSpan="6" style="text-align: center">
@@ -33,7 +33,7 @@
       ></nz-avatar>
     </ng-template>
     <ng-template #coverTemplate1>
-      <h1>20°C</h1>
+      <h1>{{temperature_stats.min_temperature}}</h1>
     </ng-template>
   </div>
   <div nz-col nzSpan="6" style="text-align: center">
@@ -49,7 +49,7 @@
       ></nz-avatar>
     </ng-template>
     <ng-template #coverTemplate2>
-      <h1>40°C</h1>
+      <h1>{{temperature_stats.average_temperature}}</h1>
     </ng-template>
   </div>
   <div nz-col nzSpan="6" style="text-align: center">
@@ -65,7 +65,7 @@
       ></nz-avatar>
     </ng-template>
     <ng-template #coverTemplate3>
-      <h1>35°C</h1>
+      <h1>{{temperature_stats.mean_temperature}}</h1>
     </ng-template>
   </div>
 </div>

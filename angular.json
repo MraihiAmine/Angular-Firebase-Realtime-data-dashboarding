@@ -105,6 +105,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "3_esp8266_firebase_highchart:build:production",
+            "firebaseProject": "mapchartsangular",
+            "firebaseHostingSite": "mapchartsangular"
+          }
         }
       }
     }

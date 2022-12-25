@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mapchartsangular": {
+      "hosting": {
+        "3_esp8266_firebase_highchart": [
+          "mapchartsangular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mapchartsangular"
+  }
+}
